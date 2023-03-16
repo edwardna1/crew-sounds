@@ -1,33 +1,17 @@
 import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "@/lib/prisma";
-import { compare } from "bcrypt";
+import SpotifyProvider from "next-auth/providers/github";
 
 export default NextAuth({
   providers: [
-    CredentialsProvider({
-      credentials: {},
-      // @ts-ignore
-      async authorize(credentials, _) {
-        const { email, password } = credentials as {
-          email: string;
-          password: string;
-        };
-        if (!email || !password) {
-          throw new Error("Missing username or password");
-        }
-        const user = await prisma.user.findUnique({
-          where: {
-            email,
-          },
-        });
-        // if user doesn't exist or password doesn't match
-        if (!user || !(await compare(password, user.password))) {
-          throw new Error("Invalid username or password");
-        }
-        return user;
-      },
+    SpotifyProvider({
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID ?? "",
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET ?? "",
+      authorization: "e",
     }),
   ],
-  session: { strategy: "jwt" },
+  callbacks: {
+    session({ session, token, user }) {
+      return session; // The return type will match the one returned in `useSession()`
+    },
+  },
 });
