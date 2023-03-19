@@ -1,27 +1,34 @@
-import Image from "next/image";
-import Form from "@/components/form";
 
-export default function Login() {
+
+import { ClientSafeProvider, getProviders, signIn } from "next-auth/react";
+import Image from "next/image";
+import { type } from "os";
+import { useEffect, useState } from "react";
+import LoginButton from "@/components/loginButton";
+import { LOGIN_URL } from "@/lib/spotify";
+export async function gett() {
+  return {};
+}
+
+export default async function Login(props: { providers: ClientSafeProvider }) {
+    const providers = await getProviders();
+
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
-      <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
-          <a href="https://dub.sh">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              className="h-10 w-10 rounded-full"
-              width={20}
-              height={20}
-            />
-          </a>
-          <h3 className="text-xl font-semibold">Sign In</h3>
-          <p className="text-sm text-gray-500">
-            Use your email and password to sign in
-          </p>
-        </div>
-        <Form type="login" />
-      </div>
+    <div className="flex flex-col bg-black justify-center items-center w-full min-h-screen">
+      <Image
+        src="https://links.papareact.com/9xl"
+        width={200}
+        height={200}
+        alt={"spotify image"}
+        className="w-52 mb-5"
+      />
+      {providers &&
+        Object.values(providers).map((provider) => (
+          <div key={provider.id}>
+            <LoginButton provider={provider}/>
+          </div>
+        ))}
+      <h1 className="mt-5 text-white">THis is my log in {LOGIN_URL}</h1>
     </div>
   );
 }
