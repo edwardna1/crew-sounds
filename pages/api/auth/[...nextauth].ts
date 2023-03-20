@@ -86,7 +86,7 @@ export default NextAuth({
       if (token.accessToken && session.user) {
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
-        session.user.username = token.name
+        session.user.username = token.name;
       }
 
       return session;
