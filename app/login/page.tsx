@@ -4,6 +4,7 @@ import { type } from "os";
 import { useEffect, useState } from "react";
 import LoginButton from "@/components/loginButton";
 import { LOGIN_URL } from "@/lib/spotify";
+import dynamic from 'next/dynamic'
 
 export default async function Login() {
   const providers = await getProviders();
@@ -19,10 +20,10 @@ export default async function Login() {
         />
         <div className="text-center max-w-screen-sm mb-10">
           <h1 className="text-stone-200 font-bold text-2xl">Crew Sound</h1>
-          <p className="text-stone-400 mt-5">
+          <div className="text-stone-400 mt-5">
             This is an app to look at your Spotify compatibility with users, in
             real time.
-          </p>
+          </div>
         </div>
         <div className="flex space-x-3">
           {providers &&
