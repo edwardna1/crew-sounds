@@ -14,6 +14,11 @@ const nextConfig = {
         hostname: 'links.papareact.com',
         // pathname: '/**'
       },
+      {
+        protocol: 'https',
+        hostname: 'platform-lookaside.fbsbx.com/**',
+        // pathname: '/**'
+      },
     ],
   }
 };

@@ -10,6 +10,7 @@
     "prisma:migrate": "prisma migrate deploy"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.16",
     "@next/font": "^13.0.5",
     "@prisma/client": "^4.6.1",
     "@types/node": "^18.11.9",
