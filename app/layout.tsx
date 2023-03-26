@@ -6,7 +6,6 @@ import AuthStatus from "@/components/auth-status";
 const inter = Inter({
   variable: "--font-inter",
 });
-import AuthContext from "./AuthContext";
 
 export default async function RootLayout({
   children,
@@ -17,11 +16,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <AuthContext>
           <Toaster />
-          {AuthStatusDiv}
+          {/* {AuthStatusDiv} */}
           {children}
-        </AuthContext>
       </body>
     </html>
   );
