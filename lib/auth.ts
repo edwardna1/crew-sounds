@@ -5,8 +5,8 @@ import { JWT } from "next-auth/jwt";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { CallbacksOptions, NextAuthOptions } from "next-auth/core/types";
 
-const refreshAccessToken = async (token: JWT, account: Account) => {
-  if (!token || !account || !account.access_token || !account.refresh_token) {
+const refreshAccessToken = async (token: JWT) => {
+  if (!token || !token.accessToken || !token.refreshToken) {
     console.log("undefined token");
     return {
       ...token,
@@ -14,17 +14,17 @@ const refreshAccessToken = async (token: JWT, account: Account) => {
     };
   }
   try {
-    spotifyApi.setAccessToken(account.access_token);
-    spotifyApi.setRefreshToken(account.refresh_token);
+    spotifyApi.setAccessToken(token.accessToken);
+    spotifyApi.setRefreshToken(token.refreshToken);
 
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
-    console.log("Refresh toke nis", refreshedToken);
+    console.log("Refresh toke nis", refreshedToken.expires_in);
 
     return {
       ...token,
       accessToken: refreshedToken.access_token,
       accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000,
-      refreshToken: refreshedToken.refresh_token ?? account.refresh_token,
+      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
       //replace new refresh token if it came back other wise use old one
     };
   } catch (error) {
@@ -70,16 +70,18 @@ export const authOptions: NextAuthOptions = {
         }
       }
       if (newToken && newToken.accessTokenExpires) {
+        console.log(newToken.accessTokenExpires)
+        console.log(Date.now())
         if (Date.now() < newToken?.accessTokenExpires) {
           // //return previous token
           console.log("EXISTING TOKEN VALID");
           return token;
+        } else {
+          console.log("Access token expired");
+          return await refreshAccessToken(newToken);
         }
-      } else if (account) {
-        //Acess token expired
-        return await refreshAccessToken(token, account);
       }
-      return token
+      return token;
     },
 
     async session({ session, token }) {

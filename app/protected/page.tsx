@@ -1,18 +1,41 @@
 import Center from "@/components/Center";
 import Sidebar from "@/components/Sidebar";
 import SignOut from "@/components/sign-out";
-import { getCurrentUser } from "@/lib/session";
-import { User } from "@prisma/client"
+import { getCurrentUser, useSpotify } from "@/lib/session";
+import { User } from "@prisma/client";
+// import useSpotify from "hooks/useSpotify";
+import { Session } from "next-auth";
+import { useEffect, useState } from "react";
+
+async function getPlaylistData(spotifyApi: any) {
+  if (spotifyApi.getAccessToken()) {
+    console.log("im here");
+    await spotifyApi.getUserPlaylists().then((data: any) => {
+      console.log("success");
+      return data.body.items;
+    });
+  }
+  return {};
+}
 
 export default async function Home() {
-  // const CenterDiv = await Center();
-  const user = await getCurrentUser();
-  console.log("prisma", user);
+  const session = await getCurrentUser();
+  const spotifyApi = useSpotify(session);
+  let plays = {};
+  if (spotifyApi.getAccessToken()) {
+    plays = await spotifyApi.getUserPlaylists().then((data: any) => {
+      console.log("success");
+      return data.body.items;
+    });
+  }
+  // const Sidebars = await Sidebar();
+  console.log("plays", plays);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">
-        <Sidebar user={user}/>
-        <Center user={user}/>
+        {/* {Sidebars} */}
+        <Sidebar playlists={plays} user={session?.user} />
+        <Center session={session} />
         {/* {CenterDiv} */}
       </main>
 

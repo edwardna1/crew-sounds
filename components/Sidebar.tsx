@@ -13,26 +13,27 @@ import {
 import SignOut from "./sign-out";
 // import { useEffect } from "react";
 import useSpotify from "hooks/useSpotify";
+import { getCurrentUser } from "@/lib/session";
 
 interface propsType {
   user: any;
+  playlists: any;
 }
 
-function Sidebar(props: propsType) {
-  // const spotifyApi = useSpotify();
+function Sidebar({ user, playlists }: propsType) {
+  console.log("props", playlists);
   // const { data: session, status } = useSession();
-  console.log("sesh", props);
-  // const [playlists, setPlaylists] = useState<any[]>([]);
-  // useEffect(() => {
-  //   console.log("spotifyApi.getAccessToken()", spotifyApi.getAccessToken());
+  console.log("spotifyApi", user);
+  // async function getPlaylistData() {
   //   if (spotifyApi.getAccessToken()) {
   //     spotifyApi.getUserPlaylists().then((data) => {
-  //       setPlaylists(data.body.items);
+  //       return data.body.items;
   //     });
   //   }
-  //   console.log("playlists", playlists);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [session, spotifyApi]);
+  //   return {};
+  // }
+  // const playlistData: any = await getPlaylistData();
+  // console.log("playlists", playlistData);
   console.log("is this");
   return (
     <>
@@ -59,6 +60,17 @@ function Sidebar(props: propsType) {
             <p>Add</p>
           </button>
           <hr className="border-t-[0.1px] border-gray-900" />
+          {playlists.map((playlist: any) => {
+            return (
+              <button
+                key={playlist.id}
+                className="flex items-center space-x-2 hover:text-white"
+              >
+                <PlusCircleIcon className="h-5 w-5" />
+                <p>{playlist.name}</p>
+              </button>
+            );
+          })}
         </div>
       </div>
     </>
