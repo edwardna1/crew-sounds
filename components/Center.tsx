@@ -7,11 +7,12 @@ import { useSession } from "next-auth/react";
 import { getCurrentUser } from "@/lib/session";
 
 type centerProps = {
-  user: any;
+  session: any;
 };
-function Center({ user }: centerProps) {
+function Center({ session }: centerProps) {
   // const user = await getCurrentUser();
   // console.log("session home", user);
+  const user = session.user
   return (
     <div className="flex-grow text-white">
       <header className="absolute top-5 right-8">
