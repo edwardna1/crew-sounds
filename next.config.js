@@ -19,6 +19,11 @@ const nextConfig = {
         hostname: 'platform-lookaside.fbsbx.com/**',
         // pathname: '/**'
       },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co/**',
+        // pathname: '/**'
+      },
     ],
   }
 };

@@ -16,6 +16,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "bcrypt": "^5.1.0",
+    "d3-cloud": "^1.2.5",
     "next": "^13.0.5",
     "next-auth": "^4.17.0",
     "react": "^18.2.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/d3-cloud": "^1.2.5",
     "@types/spotify-web-api-node": "^5.0.7",
     "autoprefixer": "^10.4.4",
     "eslint": "8.11.0",
