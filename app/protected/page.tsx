@@ -6,36 +6,20 @@ import { User } from "@prisma/client";
 // import useSpotify from "hooks/useSpotify";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
-
-async function getPlaylistData(spotifyApi: any) {
-  if (spotifyApi.getAccessToken()) {
-    console.log("im here");
-    await spotifyApi.getUserPlaylists().then((data: any) => {
-      console.log("success");
-      return data.body.items;
-    });
-  }
-  return {};
-}
+import { getPlaylistData, getTopTracks } from "util/spotifyUtil";
 
 export default async function Home() {
   const session = await getCurrentUser();
-  const spotifyApi = useSpotify(session);
-  let plays = {};
-  if (spotifyApi.getAccessToken()) {
-    plays = await spotifyApi.getUserPlaylists().then((data: any) => {
-      console.log("success");
-      return data.body.items;
-    });
-  }
+const spotifyApi = useSpotify(session);
+  const plays = await getPlaylistData()
+  const tracks = await getTopTracks()
   // const Sidebars = await Sidebar();
-  console.log("plays", plays);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">
         {/* {Sidebars} */}
         <Sidebar playlists={plays} user={session?.user} />
-        <Center session={session} />
+        <Center session={session} tracks={tracks}/>
         {/* {CenterDiv} */}
       </main>
 

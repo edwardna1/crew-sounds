@@ -8,11 +8,13 @@ import { getCurrentUser } from "@/lib/session";
 
 type centerProps = {
   session: any;
+  tracks: any;
 };
-function Center({ session }: centerProps) {
+function Center({ session, tracks }: centerProps) {
   // const user = await getCurrentUser();
   // console.log("session home", user);
   const user = session.user
+  console.log("tracks", tracks);
   return (
     <div className="flex-grow text-white">
       <header className="absolute top-5 right-8">

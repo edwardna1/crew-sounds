@@ -14,6 +14,7 @@ import SignOut from "./sign-out";
 // import { useEffect } from "react";
 import useSpotify from "hooks/useSpotify";
 import { getCurrentUser } from "@/lib/session";
+import Image from "next/image";
 
 interface propsType {
   user: any;
@@ -21,7 +22,7 @@ interface propsType {
 }
 
 function Sidebar({ user, playlists }: propsType) {
-  console.log("props", playlists);
+  // console.log("props", playlists);
   // const { data: session, status } = useSession();
   console.log("spotifyApi", user);
   // async function getPlaylistData() {
@@ -60,13 +61,20 @@ function Sidebar({ user, playlists }: propsType) {
             <p>Add</p>
           </button>
           <hr className="border-t-[0.1px] border-gray-900" />
-          {playlists.map((playlist: any) => {
+          {playlists && playlists.map((playlist: any) => {
+            // console.log(playlist.images[0].url)
+            // console.log("a", playlist.images["url"])
             return (
               <button
                 key={playlist.id}
                 className="flex items-center space-x-2 hover:text-white"
               >
-                <PlusCircleIcon className="h-5 w-5" />
+                <Image
+                 width={150}
+                  height={150}
+                  src={playlist?.images[0]?.url ?? ""}
+                  alt="Playlist image"
+                  className="w-5 h-5" />
                 <p>{playlist.name}</p>
               </button>
             );
