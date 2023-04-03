@@ -21,8 +21,22 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'i.scdn.co/**',
+        hostname: 'mosaic.scdn.co/**/**',
         // pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co/**/**',
+        // pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'wrapped-images.spotifycdn.com/**/**',
+        // pathname: '/**'
+      },
+      {
+        protocol: "https",
+        hostname: "**",
       },
     ],
   }

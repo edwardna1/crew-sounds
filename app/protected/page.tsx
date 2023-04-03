@@ -6,17 +6,7 @@ import { User } from "@prisma/client";
 // import useSpotify from "hooks/useSpotify";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
-
-async function getPlaylistData(spotifyApi: any) {
-  if (spotifyApi.getAccessToken()) {
-    console.log("im here");
-    await spotifyApi.getMytopArtists().then((data: any) => {
-      console.log("success");
-      return data.body.items;
-    });
-  }
-  return {};
-}
+import { getPlaylistData, getTopTracks } from "util/spotifyUtil";
 
 type Artists = {
   short_term: object;
@@ -26,7 +16,10 @@ type Artists = {
 
 export default async function Home() {
   const session = await getCurrentUser();
-  const spotifyApi = useSpotify(session);
+const spotifyApi = useSpotify(session);
+  // const plays = await getPlaylistData()
+  // const tracks = await getTopTracks()
+  // const Sidebars = await Sidebar();
   let plays;
   let artists: Artists = {
     short_term: [],
