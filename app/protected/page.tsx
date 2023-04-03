@@ -8,18 +8,60 @@ import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 import { getPlaylistData, getTopTracks } from "util/spotifyUtil";
 
+type Artists = {
+  short_term: object;
+  medium_term: object;
+  long_term: object;
+};
+
 export default async function Home() {
   const session = await getCurrentUser();
 const spotifyApi = useSpotify(session);
-  const plays = await getPlaylistData()
-  const tracks = await getTopTracks()
+  // const plays = await getPlaylistData()
+  // const tracks = await getTopTracks()
   // const Sidebars = await Sidebar();
+  let plays;
+  let artists: Artists = {
+    short_term: [],
+    medium_term: [],
+    long_term: []
+  };
+  if (spotifyApi.getAccessToken()) {
+    plays = await spotifyApi.getMyTopArtists().then((data: any) => {
+      console.log("success");
+      return data.body.items;
+    });
+    const artistShort = await spotifyApi
+      .getMyTopArtists({ time_range: "short_term" })
+      .then((data: any) => {
+        console.log("success");
+        return data.body.items;
+      });
+    const artistMedium = await spotifyApi
+      .getMyTopArtists({ time_range: "medium_term" })
+      .then((data: any) => {
+        console.log("success");
+        return data.body.items;
+      });
+    const artistLong = await spotifyApi
+      .getMyTopArtists({ time_range: "long_term" })
+      .then((data: any) => {
+        console.log("success");
+        return data.body.items;
+      });
+    artists.short_term = artistShort;
+    artists.medium_term = artistMedium;
+    artists.long_term = artistLong;
+  }
+
+  // const Sidebars = await Sidebar();
+  // console.log("plays", artists);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">
         {/* {Sidebars} */}
         <Sidebar playlists={plays} user={session?.user} />
-        <Center session={session} tracks={tracks}/>
+        <Center session={session} artists={artists} />
         {/* {CenterDiv} */}
       </main>
 
