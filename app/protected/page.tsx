@@ -62,7 +62,7 @@ export default async function Home() {
   }
 
   // const Sidebars = await Sidebar();
-  console.log("plays", artists);
+  // console.log("plays", artists);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">

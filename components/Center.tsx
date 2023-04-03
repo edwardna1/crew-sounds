@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { unstable_getServerSession } from "next-auth";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react";
-import { getCurrentUser } from "@/lib/session";
-import wordCloud from "@/lib/words";
+import WordCloudWidget from "./WordCloudWidget";
 type centerProps = {
   session: any;
   artists: any;
@@ -15,8 +12,6 @@ function Center(props: centerProps) {
   // console.log("session home", user);
   const user = props.session.user;
   const artists = props.artists;
-  const svg = wordCloud(artists.short_term ?? [])
-  console.log("svs", svg)
   return (
     <div className="flex-grow text-white scrollbar overflow-auto">
       <header className="absolute top-5 right-8">
@@ -39,8 +34,11 @@ function Center(props: centerProps) {
       ></section>
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
+        {artists.short_term.length > 0 && (
+          <WordCloudWidget artists={artists.short_term} />
+        )}
         <div className="flex flex-col space-y-7 py-2">
-          {artists.short_term.length > 0 &&
+          {artists.short_term.length < 0 &&
             artists.short_term.map((shortArtist: any, index: number) => {
               const mediumArtist = artists.medium_term[index];
               const longArtist = artists.long_term[index];
