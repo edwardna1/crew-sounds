@@ -6,6 +6,7 @@ import { Types } from "types";
 
 import WordCloud from "./WordCloud";
 import WordCloudHelper from "@/lib/words";
+import { useWindowSize } from "usehooks-ts";
 
 type props = {
   artists: string[];
@@ -14,9 +15,7 @@ const WordCloudWidget = ({ artists }: props) => {
   const [data, setData] = useState<string[]>([]);
 
   const [propertiesNames] = useState(["value", "text"]);
-
-  const width = 1920;
-  const height = 1080;
+  const { width, height } = useWindowSize()
 
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(

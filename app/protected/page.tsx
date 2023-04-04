@@ -6,7 +6,7 @@ import { User } from "@prisma/client";
 // import useSpotify from "hooks/useSpotify";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
-import { getPlaylistData, getTopTracks } from "util/spotifyUtil";
+import { getPlaylistData, getTopTracks, SpotifyService } from "util/spotifyUtil";
 
 type Artists = {
   short_term: object;
@@ -15,6 +15,7 @@ type Artists = {
 };
 
 export default async function Home() {
+  const spotifyService = new SpotifyService()
   const session = await getCurrentUser();
 const spotifyApi = useSpotify(session);
   // const plays = await getPlaylistData()
@@ -26,36 +27,10 @@ const spotifyApi = useSpotify(session);
     medium_term: [],
     long_term: []
   };
-  if (spotifyApi.getAccessToken()) {
-    plays = await spotifyApi.getMyTopArtists().then((data: any) => {
-      console.log("success");
-      return data.body.items;
-    });
-    const artistShort = await spotifyApi
-      .getMyTopArtists({ time_range: "short_term" })
-      .then((data: any) => {
-        console.log("success");
-        return data.body.items;
-      });
-    const artistMedium = await spotifyApi
-      .getMyTopArtists({ time_range: "medium_term" })
-      .then((data: any) => {
-        console.log("success");
-        return data.body.items;
-      });
-    const artistLong = await spotifyApi
-      .getMyTopArtists({ time_range: "long_term" })
-      .then((data: any) => {
-        console.log("success");
-        return data.body.items;
-      });
-    artists.short_term = artistShort;
-    artists.medium_term = artistMedium;
-    artists.long_term = artistLong;
-  }
+  artists.short_term = await spotifyService.getTopArtists("short_term")
+  artists.medium_term = await spotifyService.getTopArtists("medium_term")
+  artists.long_term = await spotifyService.getTopArtists("long_term")
 
-  // const Sidebars = await Sidebar();
-  // console.log("plays", artists);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">

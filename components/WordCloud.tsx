@@ -34,6 +34,7 @@ const WordCloud = (props: IWordCloudProps) => {
     const draw = (words: string[]) => {
       d3.select("#chart-group")
         .append("svg")
+        .attr("text-anchor", "middle")
         .attr("id", "chart-group-svg")
         .attr("width", layout.size()[0])
         .attr("height", layout.size()[1])
@@ -46,11 +47,12 @@ const WordCloud = (props: IWordCloudProps) => {
         .data(words)
         .enter()
         .append("text")
-        .style("fill", randomFillColor)
+        .style("fill", "rgb(0, 0, 152)")
         .style("font-size", (d) => {
           console.log("ddd", d);
           // @ts-ignore
-          return `${d.size}px`;
+          // return `80px`;
+          return `${d.size}px`
         })
         .style("font-family", "Roboto")
         .attr("text-anchor", "middle")

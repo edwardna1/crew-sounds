@@ -55,12 +55,16 @@ export default class WordCloudHelper {
         .size([width, height])
         .words(
           data.map((d, index) => {
-            return { text: d, size: 100 - index * 10, test: "haha" };
+            const wordSize = 100 - index * 10
+            // return { text: d, size: wordSize, test: "haha" };
+            return { text: d, size: 10 + Math.random() * 50, test: "haha" };
           })
         )
         .padding(0)
         // eslint-disable-next-line no-bitwise
-        .rotate(() => (~~(Math.random() * 6) - 3) * 30)
+        // .rotate(() => (~~(Math.random() * 6) - 3) * 30)
+        .rotate(0)
+        .font("Roboto")
         // @ts-ignore
         .fontSize((d) => {
           return d.size;
