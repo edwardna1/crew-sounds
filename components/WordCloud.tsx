@@ -3,6 +3,13 @@ import React, { useEffect, useCallback, useState } from "react";
 import * as d3 from "d3";
 import { Types } from "types";
 import WordCloudHelper from "@/lib/words";
+import { WordMap } from "types";
+
+interface IWordCloudProps {
+  dimensions: Types.Dimensions;
+  data: WordMap[];
+  propertiesNames: string[];
+}
 
 const WordCloud = (props: IWordCloudProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -47,12 +54,16 @@ const WordCloud = (props: IWordCloudProps) => {
         .data(words)
         .enter()
         .append("text")
-        .style("fill", "rgb(0, 0, 152)")
+        .style("fill", (d) => {
+          console.log("ddd", d);
+          // @ts-ignore
+          return `${d.color}`;
+        })
         .style("font-size", (d) => {
           console.log("ddd", d);
           // @ts-ignore
           // return `80px`;
-          return `${d.size}px`
+          return `${d.size}px`;
         })
         .style("font-family", "Roboto")
         .attr("text-anchor", "middle")
@@ -119,11 +130,5 @@ const WordCloud = (props: IWordCloudProps) => {
     </div>
   );
 };
-
-interface IWordCloudProps {
-  dimensions: Types.Dimensions;
-  data: string[];
-  propertiesNames: string[];
-}
 
 export default WordCloud;

@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import d3Cloud from "d3-cloud";
-import { Types } from "../types/index";
+import { Types, WordMap } from '../types/index';
 
 export default class WordCloudHelper {
   private readonly metric: string[];
@@ -44,7 +44,7 @@ export default class WordCloudHelper {
   };
 
   static getScales = (
-    data: string[],
+    data: WordMap[],
     width: number,
     height: number,
     metric: string[]
@@ -55,9 +55,8 @@ export default class WordCloudHelper {
         .size([width, height])
         .words(
           data.map((d, index) => {
-            const wordSize = 100 - index * 10
-            // return { text: d, size: wordSize, test: "haha" };
-            return { text: d, size: 10 + Math.random() * 50, test: "haha" };
+            return { text: d.name, size: d.size, color: d.color, test: "haha" };
+            // return { text: d, size: 10 + Math.random() * 50, test: "haha" };
           })
         )
         .padding(0)
