@@ -2,7 +2,7 @@ import { useSpotify } from "@/lib/session";
 import spotifyApi from "@/lib/spotify";
 import { getAverageColor } from "fast-average-color-node";
 import types from "spotify-web-api-node/index";
-import Vibrant = require("node-vibrant");
+const Vibrant = require("node-vibrant");
 export class SpotifyService {
   async getPlaylistData() {
     try {
