@@ -102,7 +102,7 @@ export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
           return palette.Vibrant?.rgb;
         });
       let wordSize = 0;
-      wordSize = 90 - index * 6;
+      wordSize = 70 - index * 5;
       if (wordSize < 25) {
         wordSize = 25;
       }

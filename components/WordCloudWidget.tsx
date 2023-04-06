@@ -20,8 +20,8 @@ const WordCloudWidget = ({ artists, name }: props) => {
 
   const [propertiesNames] = useState(["value", "text"]);
   // const { width, height } = useWindowSize()
-  const width = 700;
-  const height = 1000;
+  const width = 390;
+  const height = 844;
 
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
@@ -52,7 +52,7 @@ const WordCloudWidget = ({ artists, name }: props) => {
     <>
       {data.length > 1 ? (
         <div className="flex flex-col items-center">
-          <h1 className={`${bangers.style}`}>{name}`s word cloud: </h1>
+          <h1 className={`text-slate-500 text-lg ${bangers.className}  `}>{name}`s word cloud: </h1>
           <WordCloud
             dimensions={dimensions.current}
             data={data}
