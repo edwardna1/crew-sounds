@@ -3,9 +3,8 @@ import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import WordCloudWidget from "./WordCloudWidget";
 import { printAverageColor } from "util/spotifyUtil";
-import { getAverageColor } from "fast-average-color-node";
 import { color } from "d3";
-import { WordMap } from '../types/index';
+import { WordMap } from "../types/index";
 
 type centerProps = {
   session: any;
@@ -19,7 +18,7 @@ function Center(props: centerProps) {
   const user = props.session.user;
   const artists = props.artists;
   let bgColor = "from-[#FFFFFF]";
-  bgColor = props.color ? `from-[${props.color}]` : "from-[#FFFFFF]";
+  // bgColor = props.color ? `from-[${props.color}]` : "from-[#FFFFFF]";
   // console.log("col", props.artistsMap);
 
   return (
@@ -34,7 +33,7 @@ function Center(props: centerProps) {
             alt="Spotify profile image"
             className="w-10 h-10 rounded-full"
           />
-          <h2>{user?.name ?? "testing"}</h2>
+          <h2 className="font-link">{user?.name ?? "testing"}</h2>
           <ChevronDownIcon className="h-5 w-5" />
         </div>
       </header>
@@ -45,7 +44,9 @@ function Center(props: centerProps) {
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
         {artists.short_term.length > 0 && (
-          <WordCloudWidget artists={props.artistsMap} />
+          <div className="bg-inherit">
+            <WordCloudWidget artists={props.artistsMap} name={user.name}/>
+          </div>
         )}
         <div className="flex flex-col space-y-7 py-2">
           {artists.short_term.length < 0 &&

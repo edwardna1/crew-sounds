@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+  @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Eczar:wght@500&display=swap');
 
+.font-link {
+  font-family: var(--font-eczar)
+}
 .custom-button {
   @apply border-black bg-black text-white hover:bg-white hover:text-black flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 export default function Head() {
   const title = "Crew Sounds";
   const description =

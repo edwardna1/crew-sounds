@@ -44,7 +44,7 @@ export default async function Home() {
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">
         {/* {Sidebars} */}
-        <Sidebar playlists={plays} user={session?.user} />
+        {/* <Sidebar playlists={plays} user={session?.user} /> */}
         <Center
           color={color}
           session={session}
