@@ -4,7 +4,17 @@ import * as d3 from "d3";
 import { Types } from "types";
 import WordCloudHelper from "@/lib/words";
 import { WordMap } from "types";
+import { Eczar, Cedarville_Cursive } from "@next/font/google";
 
+const eczar = Eczar({
+  subsets: ["latin"],
+  variable: "--font-eczar",
+});
+
+const cursive = Cedarville_Cursive({
+  weight: ["400"],
+  variable: "--font-cursive",
+});
 interface IWordCloudProps {
   dimensions: Types.Dimensions;
   data: WordMap[];
@@ -60,12 +70,11 @@ const WordCloud = (props: IWordCloudProps) => {
           return `${d.color}`;
         })
         .style("font-size", (d) => {
-          console.log("ddd", d);
           // @ts-ignore
           // return `80px`;
           return `${d.size}px`;
         })
-        .style("font-family", "Roboto")
+        .style("font-family", `Copperplate`)
         .attr("text-anchor", "middle")
         .attr("transform", (d) => {
           // @ts-ignore

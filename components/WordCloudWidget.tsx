@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 // import "./WordCloudWidget.scss";
 import * as d3 from "d3";
@@ -8,18 +8,19 @@ import { Types } from "types";
 import WordCloud from "./WordCloud";
 import WordCloudHelper from "@/lib/words";
 import { useWindowSize } from "usehooks-ts";
-import { WordMap } from '../types/index';
+import { WordMap } from "../types/index";
 
 type props = {
   artists: WordMap[];
+  name: string;
 };
-const WordCloudWidget = ({ artists }: props) => {
+const WordCloudWidget = ({ artists, name }: props) => {
   const [data, setData] = useState<WordMap[]>([]);
 
   const [propertiesNames] = useState(["value", "text"]);
   // const { width, height } = useWindowSize()
-  const width = 1080
-  const height = 600
+  const width = 1080;
+  const height = 600;
 
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
@@ -38,7 +39,7 @@ const WordCloudWidget = ({ artists }: props) => {
     // console.log(dimensions.current)
   }, [width, height, dimensions]);
 
-  const loadData =async () => {
+  const loadData = async () => {
     setData(artists);
   };
 
@@ -49,14 +50,14 @@ const WordCloudWidget = ({ artists }: props) => {
   return (
     <>
       {data.length > 1 ? (
-        <>
-          <h3>Word Cloud</h3>
+        <div className="flex flex-col items-center">
+          <h1>{name}`s word cloud: </h1>
           <WordCloud
             dimensions={dimensions.current}
             data={data}
             propertiesNames={propertiesNames}
           />
-        </>
+        </div>
       ) : (
         <>Loading</>
       )}

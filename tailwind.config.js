@@ -5,7 +5,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend:
+    {
+      fontFamily: {
+        'Eczar': ['Eczar', 'sans-serif'],
+        // Cedarville Cursive: ['Cedarville Cursive', 'cursive']
+      },
+    },
   },
   plugins: [],
 };

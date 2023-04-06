@@ -1,7 +1,12 @@
 import * as d3 from "d3";
 import d3Cloud from "d3-cloud";
 import { Types, WordMap } from '../types/index';
+import { Eczar } from "@next/font/google";
 
+const eczar = Eczar({
+  subsets: ["latin"],
+  variable: "--font-eczar",
+});
 export default class WordCloudHelper {
   private readonly metric: string[];
 
@@ -63,7 +68,7 @@ export default class WordCloudHelper {
         // eslint-disable-next-line no-bitwise
         // .rotate(() => (~~(Math.random() * 6) - 3) * 30)
         .rotate(0)
-        .font("Roboto")
+        .font("Copperplate")
         // @ts-ignore
         .fontSize((d) => {
           return d.size;
