@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import WordCloudWidget from "./WordCloudWidget";
@@ -13,13 +14,16 @@ type centerProps = {
   artistsMap: WordMap[];
 };
 function Center(props: centerProps) {
+  const [color, setColor] = useState("from-[#FFFFFF]")
   // const user = await getCurrentUser();
   // console.log("session home", user);
   const user = props.session.user;
   const artists = props.artists;
-  let bgColor = "from-[#FFFFFF]";
-  // bgColor = props.color ? `from-[${props.color}]` : "from-[#FFFFFF]";
-  // console.log("col", props.artistsMap);
+  useEffect(() => {
+    if (props.color) {
+      setColor(`from-[${props.color}]`)
+    }
+  }, [props.color])
 
   return (
     <div className="flex-grow text-white scrollbar overflow-auto">
@@ -39,13 +43,13 @@ function Center(props: centerProps) {
       </header>
 
       <section
-        className={`flex items-end space-x-7 bg-gradient-to-b to-black ${bgColor} h-1/6 text-white padding-8`}
+        className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-1/6 text-white padding-8`}
       ></section>
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
         {artists.short_term.length > 0 && (
           <div className="bg-inherit">
-            <WordCloudWidget artists={props.artistsMap} name={user.name}/>
+            <WordCloudWidget artists={props.artistsMap} name={user.name} />
           </div>
         )}
         <div className="flex flex-col space-y-7 py-2">

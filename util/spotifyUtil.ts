@@ -88,7 +88,7 @@ export async function getTopTracks() {
 export async function printAverageColor(image: any) {
   const color = await getAverageColor(image);
   // console.log(color.hex);
-  return color.rgba;
+  return color.hex;
 }
 
 export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
@@ -98,13 +98,13 @@ export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
       let colorV = await Vibrant.from(artist.images[0].url)
         .getPalette()
         .then((palette: any) => {
-          console.log(palette)
+          // console.log(palette)
           return palette.Vibrant?.rgb;
         });
       let wordSize = 0;
       wordSize = 110 - index * 7;
-      if (wordSize < 0) {
-        wordSize = 10;
+      if (wordSize < 25) {
+        wordSize = 25;
       }
       let finalColor = "rgb(" + colorV?.toString() + ")";
       // console.log("c", color);

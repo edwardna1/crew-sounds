@@ -39,6 +39,7 @@ export default async function Home() {
   artists.long_term = await spotifyService.getTopArtists("long_term");
   const color = await printAverageColor(session?.user.image);
   // const CenterDiv = await Center()
+  console.log("average", color)
   const artistsmap = await wordMap(artists.short_term);
   return (
     <div className="h-screen bg-black overflow-hidden">

@@ -5,16 +5,8 @@ import { Types } from "types";
 import WordCloudHelper from "@/lib/words";
 import { WordMap } from "types";
 import { Eczar, Cedarville_Cursive } from "@next/font/google";
+import { bangers, lato } from "util/fonts";
 
-const eczar = Eczar({
-  subsets: ["latin"],
-  variable: "--font-eczar",
-});
-
-const cursive = Cedarville_Cursive({
-  weight: ["400"],
-  variable: "--font-cursive",
-});
 interface IWordCloudProps {
   dimensions: Types.Dimensions;
   data: WordMap[];
@@ -74,7 +66,8 @@ const WordCloud = (props: IWordCloudProps) => {
           // return `80px`;
           return `${d.size}px`;
         })
-        .style("font-family", `Copperplate`)
+        .style("font-family", bangers.style.fontFamily)
+        // .style("font-family", `Impact`)
         .attr("text-anchor", "middle")
         .attr("transform", (d) => {
           // @ts-ignore

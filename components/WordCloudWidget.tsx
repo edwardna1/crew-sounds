@@ -19,8 +19,8 @@ const WordCloudWidget = ({ artists, name }: props) => {
 
   const [propertiesNames] = useState(["value", "text"]);
   // const { width, height } = useWindowSize()
-  const width = 1080;
-  const height = 600;
+  const width = 880;
+  const height = 1000;
 
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(

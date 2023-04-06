@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import d3Cloud from "d3-cloud";
 import { Types, WordMap } from '../types/index';
 import { Eczar } from "@next/font/google";
-
+import { bangers } from "util/fonts";
 const eczar = Eczar({
   subsets: ["latin"],
   variable: "--font-eczar",
@@ -66,9 +66,12 @@ export default class WordCloudHelper {
         )
         .padding(0)
         // eslint-disable-next-line no-bitwise
-        // .rotate(() => (~~(Math.random() * 6) - 3) * 30)
-        .rotate(0)
-        .font("Copperplate")
+        .rotate((d, index) => {
+          
+          return index !== 0 ? (~~(Math.random() * 6) - 3) * 5 : 0
+        })
+        // .rotate(0)
+        .font(bangers.style.fontFamily)
         // @ts-ignore
         .fontSize((d) => {
           return d.size;
