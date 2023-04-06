@@ -1,6 +1,8 @@
 import { useSpotify } from "@/lib/session";
 import spotifyApi from "@/lib/spotify";
+import { getAverageColor } from "fast-average-color-node";
 import types from "spotify-web-api-node/index";
+const Vibrant = require("node-vibrant");
 export class SpotifyService {
   async getPlaylistData() {
     try {
@@ -82,4 +84,33 @@ export async function getTopTracks() {
     console.log(err);
     return {};
   }
+}
+export async function printAverageColor(image: any) {
+  const color = await getAverageColor(image);
+  console.log(color.hex);
+  return color.rgba;
+}
+
+export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
+  const wordMap = await Promise.all(
+    artists.map(async (artist: any, index: number) => {
+      let color = await printAverageColor(artist.images[0].url);
+      let colorV = await Vibrant.from(artist.images[0].url)
+        .getPalette()
+        .then((palette : any) => palette.Vibrant?.rgb);
+      let wordSize = 0;
+      wordSize = 100 - index * 5;
+      if (wordSize < 10) {
+        wordSize = 10;
+      }
+      let finalColor ="rgb(" + colorV?.toString() + ")"
+      console.log("c", color);
+      return {
+        name: artist.name,
+        size: wordSize,
+        color: finalColor,
+      };
+    })
+  );
+  return wordMap;
 }

@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from "react";
 // import "./WordCloudWidget.scss";
 import * as d3 from "d3";
@@ -7,15 +8,18 @@ import { Types } from "types";
 import WordCloud from "./WordCloud";
 import WordCloudHelper from "@/lib/words";
 import { useWindowSize } from "usehooks-ts";
+import { WordMap } from '../types/index';
 
 type props = {
-  artists: string[];
+  artists: WordMap[];
 };
 const WordCloudWidget = ({ artists }: props) => {
-  const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState<WordMap[]>([]);
 
   const [propertiesNames] = useState(["value", "text"]);
-  const { width, height } = useWindowSize()
+  // const { width, height } = useWindowSize()
+  const width = 1080
+  const height = 600
 
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
@@ -34,11 +38,8 @@ const WordCloudWidget = ({ artists }: props) => {
     // console.log(dimensions.current)
   }, [width, height, dimensions]);
 
-  const loadData = () => {
-    const words = artists.map((artist: any) => {
-      return artist.name;
-    });
-    setData(words);
+  const loadData =async () => {
+    setData(artists);
   };
 
   useEffect(() => {

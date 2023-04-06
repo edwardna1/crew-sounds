@@ -16,3 +16,9 @@ export namespace Types {
     boundedHeight: number;
   };
 }
+
+export type WordMap = {
+  name: string;
+  size: number;
+  color: string;
+};
