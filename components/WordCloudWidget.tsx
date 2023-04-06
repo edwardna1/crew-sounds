@@ -9,6 +9,7 @@ import WordCloud from "./WordCloud";
 import WordCloudHelper from "@/lib/words";
 import { useWindowSize } from "usehooks-ts";
 import { WordMap } from "../types/index";
+import { bangers } from "util/fonts";
 
 type props = {
   artists: WordMap[];
@@ -19,7 +20,7 @@ const WordCloudWidget = ({ artists, name }: props) => {
 
   const [propertiesNames] = useState(["value", "text"]);
   // const { width, height } = useWindowSize()
-  const width = 880;
+  const width = 700;
   const height = 1000;
 
   const dimensions = useRef() as { current: Types.Dimensions };
@@ -51,7 +52,7 @@ const WordCloudWidget = ({ artists, name }: props) => {
     <>
       {data.length > 1 ? (
         <div className="flex flex-col items-center">
-          <h1>{name}`s word cloud: </h1>
+          <h1 className={`${bangers.style}`}>{name}`s word cloud: </h1>
           <WordCloud
             dimensions={dimensions.current}
             data={data}
