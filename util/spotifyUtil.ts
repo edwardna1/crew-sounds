@@ -97,7 +97,7 @@ export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
       let color = await printAverageColor(artist.images[0].url);
       let colorV = await Vibrant.from(artist.images[0].url)
         .getPalette()
-        .then((palette) => palette.Vibrant?.rgb);
+        .then((palette : any) => palette.Vibrant?.rgb);
       let wordSize = 0;
       wordSize = 100 - index * 5;
       if (wordSize < 10) {
