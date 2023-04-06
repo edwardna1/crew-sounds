@@ -37,7 +37,7 @@ function Center(props: centerProps) {
             alt="Spotify profile image"
             className="w-10 h-10 rounded-full"
           />
-          <h2 className="font-link">{user?.name ?? "testing"}</h2>
+          {/* <h2 className="font-link">{user?.name ?? "testing"}</h2> */}
           <ChevronDownIcon className="h-5 w-5" />
         </div>
       </header>

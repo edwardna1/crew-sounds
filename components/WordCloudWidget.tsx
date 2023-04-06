@@ -19,10 +19,9 @@ const WordCloudWidget = ({ artists, name }: props) => {
   const [data, setData] = useState<WordMap[]>([]);
 
   const [propertiesNames] = useState(["value", "text"]);
-  // const { width, height } = useWindowSize()
-  const width = 390;
-  const height = 844;
-
+  let { width, height } = useWindowSize();
+  // const width = 550;
+  // const height = 844;
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
     width * 0.9,
@@ -37,7 +36,6 @@ const WordCloudWidget = ({ artists, name }: props) => {
   useEffect(() => {
     (dimensions as unknown as { current: Types.Dimensions }).current =
       WordCloudHelper.getDimensions(width * 0.9, height * 0.9, 30, 50, 10, 50);
-    // console.log(dimensions.current)
   }, [width, height, dimensions]);
 
   const loadData = async () => {
@@ -52,7 +50,9 @@ const WordCloudWidget = ({ artists, name }: props) => {
     <>
       {data.length > 1 ? (
         <div className="flex flex-col items-center">
-          <h1 className={`text-slate-500 text-lg ${bangers.className}  `}>{name}`s word cloud: </h1>
+          <h1 className={`text-slate-500 text-lg ${bangers.className}  `}>
+            {name}`s word cloud:{" "}
+          </h1>
           <WordCloud
             dimensions={dimensions.current}
             data={data}

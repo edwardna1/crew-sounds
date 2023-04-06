@@ -78,7 +78,7 @@ const WordCloud = (props: IWordCloudProps) => {
           return d.text;
         });
     };
-
+    console.log(props.dimensions)
     const layout = scales.layout.on("end", draw);
 
     layout.start();
