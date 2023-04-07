@@ -70,6 +70,9 @@ const WordCloud = (props: IWordCloudProps) => {
         // .style("font-family", `Impact`)
         .attr("text-anchor", "middle")
         .attr("transform", (d) => {
+          // if (index == 0) {
+          //   return "translate(" + [0, 0] + ")rotate(" + 0 + ")";
+          // }
           // @ts-ignore
           return `translate(${[d.x, d.y]})rotate(${d.rotate})`;
         })
@@ -78,9 +81,8 @@ const WordCloud = (props: IWordCloudProps) => {
           return d.text;
         });
     };
-    console.log(props.dimensions)
-    const layout = scales.layout.on("end", draw);
 
+    const layout = scales.layout.on("end", draw);
     layout.start();
   }, [props.data, props.dimensions, props.propertiesNames]);
 

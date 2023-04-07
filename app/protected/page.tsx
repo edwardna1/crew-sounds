@@ -7,6 +7,7 @@ import { User } from "@prisma/client";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 import { getAverageColor } from "fast-average-color-node";
+import { WordMap } from "../../types/index";
 import {
   getPlaylistData,
   getTopTracks,
@@ -39,19 +40,19 @@ export default async function Home() {
   artists.long_term = await spotifyService.getTopArtists("long_term");
   const color = await printAverageColor(session?.user.image);
   // const CenterDiv = await Center()
-  console.log("average", color)
-  const artistsmap = await wordMap(artists.short_term);
+  console.log("average", color);
+  const artistsmap = await wordMap(artists.medium_term);
   return (
     <div className="h-screen bg-black overflow-hidden">
       <main className="flex">
         {/* {Sidebars} */}
         {/* <Sidebar playlists={plays} user={session?.user} /> */}
-        <Center
-          color={color}
-          session={session}
-          artists={artists}
-          artistsMap={artistsmap}
-        />
+          <Center
+            color={color}
+            session={session}
+            artists={artists}
+            artistsMap={artistsmap}
+          />
         {/* {CenterDiv} */}
       </main>
 

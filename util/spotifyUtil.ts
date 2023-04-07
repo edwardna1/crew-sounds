@@ -1,6 +1,7 @@
-import { useSpotify } from "@/lib/session";
+import { getCurrentUser, useSpotify } from "@/lib/session";
 import spotifyApi from "@/lib/spotify";
 import { getAverageColor } from "fast-average-color-node";
+import { Session } from "next-auth/core/types";
 import types from "spotify-web-api-node/index";
 const Vibrant = require("node-vibrant");
 export class SpotifyService {

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -14,17 +14,15 @@ type centerProps = {
   artistsMap: WordMap[];
 };
 function Center(props: centerProps) {
-  const [color, setColor] = useState("from-[#FFFFFF]")
+  const [color, setColor] = useState("from-[#ffffff]");
   // const user = await getCurrentUser();
   // console.log("session home", user);
   const user = props.session.user;
   const artists = props.artists;
   useEffect(() => {
-    if (props.color) {
-      setColor(`from-[${props.color}]`)
-    }
-  }, [props.color])
-
+    setColor(`from-[${props.color}]`);
+  }, [props.color]);
+  console.log("sss", color);
   return (
     <div className="flex-grow text-white scrollbar overflow-auto">
       <header className="absolute top-5 right-8">
@@ -41,10 +39,11 @@ function Center(props: centerProps) {
           <ChevronDownIcon className="h-5 w-5" />
         </div>
       </header>
-
-      <section
-        className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-1/6 text-white padding-8`}
-      ></section>
+      {color && (
+        <section
+          className={`flex items-end space-x-7 bg-gradient-to-b to-black h-1/6 text-white padding-8 ${color}`}
+        ></section>
+      )}
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
         {artists.short_term.length > 0 && (
