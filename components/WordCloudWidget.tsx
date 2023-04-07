@@ -24,8 +24,8 @@ const WordCloudWidget = ({ artists, name }: props) => {
   // const height = 844;
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
-    width * 0.9,
-    height * 0.9,
+    width,
+    height,
     30,
     50,
     10,
@@ -35,7 +35,7 @@ const WordCloudWidget = ({ artists, name }: props) => {
   // resize
   useEffect(() => {
     (dimensions as unknown as { current: Types.Dimensions }).current =
-      WordCloudHelper.getDimensions(width * 0.9, height * 0.9, 30, 50, 10, 50);
+      WordCloudHelper.getDimensions(width, height, 30, 50, 10, 50);
   }, [width, height, dimensions]);
 
   const loadData = async () => {
