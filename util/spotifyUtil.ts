@@ -95,24 +95,27 @@ export async function printAverageColor(image: any) {
 export async function wordMap(artists: SpotifyApi.UsersTopArtistsResponse[]) {
   const wordMap = await Promise.all(
     artists.map(async (artist: any, index: number) => {
-      let color = await printAverageColor(artist.images[0].url);
+      // let color = await printAverageColor(artist.images[0].url);
+      let topArtists = index < 5
       let colorV = await Vibrant.from(artist.images[0].url)
         .getPalette()
         .then((palette: any) => {
           // console.log(palette)
-          return palette.Vibrant?.rgb;
+          return  [palette.Vibrant.rgb, palette.DarkMuted.rgb];
         });
       let wordSize = 0;
       wordSize = 70 - index * 5;
       if (wordSize < 25) {
         wordSize = 25;
       }
-      let finalColor = "rgb(" + colorV?.toString() + ")";
+      let finalColor = "rgb(" + colorV[0]?.toString() + ")";
+      let shadow = "rgb(" + colorV[1]?.toString() + ")";
       // console.log("c", color);
       return {
         name: artist.name,
         size: wordSize,
         color: finalColor,
+        shadow: shadow
       };
     })
   );

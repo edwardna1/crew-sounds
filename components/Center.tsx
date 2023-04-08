@@ -6,6 +6,7 @@ import WordCloudWidget from "./WordCloudWidget";
 import { printAverageColor } from "util/spotifyUtil";
 import { color } from "d3";
 import { WordMap } from "../types/index";
+import SignOut from "./sign-out";
 
 type centerProps = {
   session: any;
@@ -26,18 +27,19 @@ function Center(props: centerProps) {
   return (
     <div className="flex-grow text-white scrollbar overflow-auto">
       <header className="absolute top-5 right-8">
-        <div className="flex items-center bg-red-300 space-x-3 opacity-90 hover:opacity-80 cursor-pointer p-1 pl-2 pr-2 rounded-full">
-          <Image
+        {/* <div className="flex items-center bg-red-300 space-x-3 opacity-90 hover:opacity-80 cursor-pointer p-1 pl-2 pr-2 rounded-full"> */}
+        {/* <Image
             width={10000}
             height={10000}
             src={user?.image ?? "/logo.png"}
             // src="/logo.png"
             alt="Spotify profile image"
             className="w-10 h-10 rounded-full"
-          />
-          {/* <h2 className="font-link">{user?.name ?? "testing"}</h2> */}
-          <ChevronDownIcon className="h-5 w-5" />
-        </div>
+          /> */}
+        {/* <h2 className="font-link">{user?.name ?? "testing"}</h2> */}
+        {/* <ChevronDownIcon className="h-5 w-5" /> */}
+        <SignOut />
+        {/* </div> */}
       </header>
       {color && (
         <section
@@ -47,7 +49,7 @@ function Center(props: centerProps) {
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
         {artists.short_term.length > 0 && (
-          <div className="bg-inherit">
+          <div className="justify-center items-center ">
             <WordCloudWidget artists={props.artistsMap} name={user.name} />
           </div>
         )}

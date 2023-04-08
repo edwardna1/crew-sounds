@@ -11,6 +11,9 @@ module.exports = {
         'Eczar': ['Eczar', 'sans-serif'],
         // Cedarville Cursive: ['Cedarville Cursive', 'cursive']
       },
+      backgroundImage: {
+        'cloud': "url('../public/cover.png')",
+      }
     },
   },
   plugins: [],

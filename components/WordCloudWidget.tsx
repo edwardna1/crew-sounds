@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Types } from "types";
 // import useWindowDimensions from "../../hooks/WindowDimensions";
-
+import Image from "next/image";
 import WordCloud from "./WordCloud";
 import WordCloudHelper from "@/lib/words";
 import { useWindowSize } from "usehooks-ts";
@@ -19,23 +19,23 @@ const WordCloudWidget = ({ artists, name }: props) => {
   const [data, setData] = useState<WordMap[]>([]);
 
   const [propertiesNames] = useState(["value", "text"]);
-  let { width, height } = useWindowSize();
+  const { width, height } = useWindowSize();
   // const width = 550;
   // const height = 844;
   const dimensions = useRef() as { current: Types.Dimensions };
   dimensions.current = WordCloudHelper.getDimensions(
-    width,
-    height,
-    30,
-    50,
+    width * 0.9,
+    height * 0.9,
     10,
+    10,
+    0,
     50
   );
 
   // resize
   useEffect(() => {
     (dimensions as unknown as { current: Types.Dimensions }).current =
-      WordCloudHelper.getDimensions(width, height, 30, 50, 10, 50);
+      WordCloudHelper.getDimensions(width * 0.9, height * 0.9, 10, 10, 0, 50);
   }, [width, height, dimensions]);
 
   const loadData = async () => {
@@ -49,9 +49,28 @@ const WordCloudWidget = ({ artists, name }: props) => {
   return (
     <>
       {data.length > 1 ? (
-        <div className="flex flex-col items-center">
-          <h1 className={`text-slate-500 text-lg ${bangers.className}  `}>
-            {name}`s word cloud:{" "}
+        <div className="flex flex-col items-center z-40 relative">
+          {/* <Image
+            alt="comic-book"
+            src="/cover.png"
+            width={300}
+            height={550}
+            className="w-[30rem] absolute"
+          /> */}
+          <h1
+            className={`text-slate-500 text-3xl ${bangers.className} absolute right-10`}
+          >
+            {name}
+          </h1>
+          <h1
+            className={`text-white text-2xl ${bangers.className} relative left-7 -rotate-[40deg] top-10`}
+          >
+            {new Date().toDateString()}
+          </h1>
+          <h1
+            className={`text-slate-500 text-3xl ${bangers.className} absolute`}
+          >
+            Starring
           </h1>
           <WordCloud
             dimensions={dimensions.current}

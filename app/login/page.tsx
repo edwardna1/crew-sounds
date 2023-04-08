@@ -18,10 +18,9 @@ export default async function Login() {
           className="w-52 h-52"
         />
         <div className="text-center max-w-screen-sm mb-10">
-          <h1 className="text-stone-200 font-bold text-2xl">Crew Sound</h1>
+          <h1 className="text-stone-200 font-bold text-2xl">Comicfy</h1>
           <p className="text-stone-400 mt-5">
-            This is an app to look at your Spotify compatibility with users, in
-            real time.
+            See your favourite artists in the form of a comic!
           </p>
         </div>
         <div className="flex space-x-3">

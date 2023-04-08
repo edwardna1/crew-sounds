@@ -21,4 +21,5 @@ export type WordMap = {
   name: string;
   size: number;
   color: string;
+  shadow: string;
 };
