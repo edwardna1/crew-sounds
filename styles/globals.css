@@ -1,10 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Eczar:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Eczar:wght@500&display=swap");
 
 .font-link {
-  font-family: var(--font-eczar)
+  font-family: var(--font-eczar);
+}
+
+.coolShadow {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 
+      -1px 1px 0 #000,
+      -2px 2px 0 #000,
+      -3px 3px 0 #000,
+      -4px 4px 0 #000,
+      -5px 5px 0 #000,
+      -6px 6px 0 #000,
+      -7px 7px 0 #000,
+      -8px 8px 0 #000,
+      -9px 9px 0 #000;
 }
 .custom-button {
   @apply border-black bg-black text-white hover:bg-white hover:text-black flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline;

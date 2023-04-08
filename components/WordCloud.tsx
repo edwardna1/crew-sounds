@@ -6,6 +6,7 @@ import WordCloudHelper from "@/lib/words";
 import { WordMap } from "types";
 import { Eczar, Cedarville_Cursive } from "@next/font/google";
 import { bangers, lato } from "util/fonts";
+import Ztext from "react-ztext";
 
 interface IWordCloudProps {
   dimensions: Types.Dimensions;
@@ -67,6 +68,18 @@ const WordCloud = (props: IWordCloudProps) => {
           return `${d.size}px`;
         })
         .style("font-family", bangers.style.fontFamily)
+        .style("text-shadow", (d, index) => {
+          let total = 20;
+          let start = 1;
+          const css: string[] = [];
+          while (index < total) {
+             // @ts-ignore
+            css.push(`-${start}px ${start}px 0 ${d.shadow}`);
+            index+=2;
+            start++;
+          }
+          return css.join(", ");
+        })
         // .style("font-family", `Impact`)
         .attr("text-anchor", "middle")
         .attr("transform", (d) => {

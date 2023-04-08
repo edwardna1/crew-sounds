@@ -64,6 +64,7 @@ export default class WordCloudHelper {
               text: d.name,
               size: d.size,
               color: d.color,
+              shadow: d.shadow
             };
             // return { text: d, size: 10 + Math.random() * 50, test: "haha" };
           })
