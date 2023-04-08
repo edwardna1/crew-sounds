@@ -6,7 +6,6 @@ import WordCloudHelper from "@/lib/words";
 import { WordMap } from "types";
 import { Eczar, Cedarville_Cursive } from "@next/font/google";
 import { bangers, lato } from "util/fonts";
-import Ztext from "react-ztext";
 
 interface IWordCloudProps {
   dimensions: Types.Dimensions;
