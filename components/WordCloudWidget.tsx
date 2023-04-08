@@ -65,7 +65,7 @@ const WordCloudWidget = ({ artists, name }: props) => {
           <h1
             className={`text-white text-2xl ${bangers.className} relative left-7 -rotate-[40deg] top-10`}
           >
-            {new Date().toDateString()}
+            {/* {new Date().toDateString()} */}
           </h1>
           <h1
             className={`text-slate-500 text-3xl ${bangers.className} absolute`}

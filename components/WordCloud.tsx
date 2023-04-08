@@ -68,16 +68,24 @@ const WordCloud = (props: IWordCloudProps) => {
         })
         .style("font-family", bangers.style.fontFamily)
         .style("text-shadow", (d, index) => {
-          let total = 20;
+          let total = 25;
           let start = 1;
           const css: string[] = [];
           while (index < total) {
-             // @ts-ignore
+            // @ts-ignore
             css.push(`-${start}px ${start}px 0 ${d.shadow}`);
-            index+=2;
+            index += 2;
             start++;
           }
           return css.join(", ");
+        })
+        .style("position", "relative")
+        .style("z-index", (d, index) => {
+          // if (index == 0) {
+          //   return "translate(" + [0, 0] + ")rotate(" + 0 + ")";
+          // }
+          // @ts-ignore
+          return 30 - index;
         })
         // .style("font-family", `Impact`)
         .attr("text-anchor", "middle")
