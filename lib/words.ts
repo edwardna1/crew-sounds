@@ -64,15 +64,19 @@ export default class WordCloudHelper {
               text: d.name,
               size: d.size,
               color: d.color,
-              shadow: d.shadow
+              shadow: d.shadow,
             };
             // return { text: d, size: 10 + Math.random() * 50, test: "haha" };
           })
         )
-        .padding(0)
+        .padding((d, index) => {
+
+          // return index * 0.2
+          return 1
+        })
         // eslint-disable-next-line no-bitwise
         .rotate((d, index) => {
-          return index !== 0 ? (~~(Math.random() * 6) - 3) * 5 : 0;
+          return index !== 0 ? (~~(Math.random() * 6) - 3) * 8 : 0;
         })
         // .spiral("archemidean")
         // .rotate(0)

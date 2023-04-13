@@ -53,7 +53,7 @@ const WordCloud = (props: IWordCloudProps) => {
           `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})`
         )
         .selectAll("text")
-        .data(words)
+        .data(words.reverse())
         .enter()
         .append("text")
         .style("fill", (d) => {
@@ -71,10 +71,10 @@ const WordCloud = (props: IWordCloudProps) => {
           let total = 25;
           let start = 1;
           const css: string[] = [];
-          while (index < total) {
+          while (index > -3) {
             // @ts-ignore
             css.push(`-${start}px ${start}px 0 ${d.shadow}`);
-            index += 2;
+            index -= 2;
             start++;
           }
           return css.join(", ");
