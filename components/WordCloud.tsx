@@ -74,7 +74,7 @@ const WordCloud = (props: IWordCloudProps) => {
           while (index > -3) {
             // @ts-ignore
             css.push(`-${start}px ${start}px 0 ${d.shadow}`);
-            index -= 2;
+            index -= 1;
             start++;
           }
           return css.join(", ");
