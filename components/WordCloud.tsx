@@ -74,7 +74,7 @@ const WordCloud = (props: IWordCloudProps) => {
           while (index > -3) {
             // @ts-ignore
             css.push(`-${start}px ${start}px 0 ${d.shadow}`);
-            index -= 1;
+            index -= 2;
             start++;
           }
           return css.join(", ");
@@ -141,6 +141,7 @@ const WordCloud = (props: IWordCloudProps) => {
         id="wrapper"
         width={props.dimensions.width}
         height={props.dimensions.height}
+        className="pt-10"
       >
         <g
           id="bounds"

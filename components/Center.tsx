@@ -49,7 +49,7 @@ function Center(props: centerProps) {
       <section>
         {/* <WordCloud wordList={artists.short_term.length ?? []} /> */}
         {artists.short_term.length > 0 && (
-          <div className="justify-center items-center ">
+          <div className="flex justify-center items-center ">
             <WordCloudWidget artists={props.artistsMap} name={user.name} />
           </div>
         )}
