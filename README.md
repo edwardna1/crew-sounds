@@ -1,8 +1,8 @@
 <p align="center">
-    <h3 align="center">Next.js Spotify Project</h3>
+    <h3 align="center">Comicfy</h3>
   </a>
 </p>
 
 <p align="center">
-This is a <a href="https://nextjs.org/">Next.js</a> starter project that uses the spotify app to generate cool new things
+Transform your most listened to artists in a comic-like cloud, through React, Typescript, NextJS, Spotify API, Vercel
 </p>
