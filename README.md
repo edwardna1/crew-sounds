@@ -9,7 +9,7 @@ Transform your most listened to artists in a comic-like cloud, through React, Ty
  alt="edwardna1" />
 
 
-<h3 align="center">Short Term:</h3>
+<h3 align="center">My Short Term Visualization :)</h3>
 
 </p>
 
