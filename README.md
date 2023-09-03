@@ -5,6 +5,7 @@
 
 <p align="center">
 Transform your most listened to artists in a comic-like cloud, through React, Typescript, NextJS, Spotify API, Vercel
-    <img align="center" src="https://github.com/edwardna1/crew-sounds/assets/77164264/15f881f8-c60a-4c5d-8981-a570aa826833" alt="edwardna1" />
-</p>
+    <img height='400' align="center" src="https://github.com/edwardna1/crew-sounds/assets/77164264/7c5616cf-aaa9-4116-a969-3172e768d431" alt="edwardna1" />
 
+<img height="400" align="center" src="https://github.com/edwardna1/crew-sounds/assets/77164264/09c81d75-5e86-4a14-91bd-56f13233dde8" alt="edwardna1" /> 
+</p>
